@@ -1,5 +1,5 @@
 return {
-  'hiphish/rainbow-delimiters.nvim',
-  event = 'BufEnter',
-  submodules = false,
+	"hiphish/rainbow-delimiters.nvim",
+	event = { "BufReadPost", "BufNewFile" },
+	submodules = false,
 }
