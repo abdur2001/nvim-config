@@ -41,6 +41,7 @@ vim.opt.showmode = false
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
+vim.g.clipboard = "osc52"
 vim.opt.undofile = true -- save undo history
 vim.opt.ignorecase = true -- ignore case in searches
 vim.opt.smartcase = true -- unless \C or one or more capitals in search
