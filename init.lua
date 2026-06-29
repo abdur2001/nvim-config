@@ -49,10 +49,6 @@ vim.diagnostic.config({
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- shortcut to clear highlights
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
-vim.opt.foldlevel = 99
-
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -151,5 +147,7 @@ vim.keymap.set("n", "gz", function()
 	vim.cmd("tabnew")
 	vim.api.nvim_set_current_buf(buf)
 end, { desc = "Open current buffer in new tab" })
+
 require("config.lazy")
+vim.opt.foldmethod = "indent"
 vim.cmd.colorscheme("everforest")
