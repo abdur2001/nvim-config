@@ -12,6 +12,7 @@ return {
     float_style = 'blend',
     on_highlights = function(hl, palette)
       hl.CurrentWord = { bg = '#4d2e3e', bold = true }
+      hl.NormalCursor = { bg = palette.grey2, fg = palette.bg0 }
     end,
   },
   main = 'everforest',

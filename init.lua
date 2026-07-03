@@ -152,3 +152,4 @@ end, { desc = "Open current buffer in new tab" })
 
 require("config.lazy")
 vim.cmd.colorscheme("everforest")
+vim.opt.guicursor:prepend("n:block-NormalCursor")
