@@ -48,8 +48,8 @@ vim.diagnostic.config({
 })
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- shortcut to clear highlights
-
 vim.opt.foldmethod = "indent"
+vim.opt.foldlevelstart = 99
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })

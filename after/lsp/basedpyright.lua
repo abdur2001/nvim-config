@@ -6,7 +6,7 @@ return {
         autoImportCompletions = true,
         disableOrganizeImports = true,
         autoSearchPaths = true,
-        typeCheckingMode = 'strict',
+        typeCheckingMode = "strict",
         useLibraryCodeForTypes = true,
       },
     },
