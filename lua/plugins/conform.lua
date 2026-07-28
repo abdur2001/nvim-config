@@ -1,16 +1,16 @@
 return {
-  'stevearc/conform.nvim',
-  version = '*',
-  event = 'BufWritePre',
-  command = 'ConformInfo',
+  "stevearc/conform.nvim",
+  version = "*",
+  event = "BufWritePre",
+  command = "ConformInfo",
   keys = {
     {
-      '<leader>lf',
+      "<leader>lf",
       function()
-        require('conform').format { async = true, lsp_format = 'fallback' }
+        require("conform").format({ async = true, lsp_format = "fallback" })
       end,
-      mode = '',
-      desc = '[L]SP [F]ormat buffer',
+      mode = "",
+      desc = "[L]SP [F]ormat buffer",
     },
   },
   ---@module "conform"
@@ -18,13 +18,13 @@ return {
   opts = {
 
     formatters_by_ft = {
-      lua = { 'stylua' },
-      python = { 'ruff_format', 'ruff_organize_imports' },
-      markdown = { 'injected' },
-      ['*'] = { 'trim_whitespace' },
+      lua = { "stylua" },
+      python = { "ruff_format", "ruff_organize_imports" },
+      markdown = { "injected" },
+      ["*"] = { "trim_whitespace" },
     },
     default_format_opts = {
-      lsp_format = 'fallback',
+      lsp_format = "fallback",
     },
     format_on_save = { timeout_ms = 500 },
   },

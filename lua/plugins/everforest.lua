@@ -1,19 +1,19 @@
 ---@module "lazy"
 ---@type LazyPluginSpec
 return {
-  'neanias/everforest-nvim',
+  "neanias/everforest-nvim",
   version = false,
   lazy = false,
   priority = 1000,
   ---@module "everforest"
   ---@type Everforest.Config
   opts = {
-    background = 'hard',
-    float_style = 'blend',
+    background = "hard",
+    float_style = "blend",
     on_highlights = function(hl, palette)
-      hl.CurrentWord = { bg = '#4d2e3e', bold = true }
+      hl.CurrentWord = { bg = "#4d2e3e", bold = true }
       hl.NormalCursor = { bg = palette.grey2, fg = palette.bg0 }
     end,
   },
-  main = 'everforest',
+  main = "everforest",
 }

@@ -1,5 +1,5 @@
 return {
-  'ray-x/lsp_signature.nvim',
-  event = 'InsertEnter',
+  "ray-x/lsp_signature.nvim",
+  event = "InsertEnter",
   config = true,
 }
