@@ -21,6 +21,7 @@ return {
       lua = { "stylua" },
       python = { "ruff_format", "ruff_organize_imports" },
       markdown = { "injected" },
+      toml = { "taplo" },
       ["*"] = { "trim_whitespace" },
     },
     default_format_opts = {
