@@ -22,7 +22,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamedplus"
 end)
 vim.g.clipboard = "osc52"
 vim.opt.undofile = true -- save undo history
@@ -44,7 +44,7 @@ vim.opt.spell = true
 vim.opt.spelllang = { "en_gb" }
 
 vim.diagnostic.config({
-	virtual_text = true,
+  virtual_text = true,
 })
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- shortcut to clear highlights
@@ -71,83 +71,83 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 function ipdb_set_trace()
-	local row = vim.api.nvim_win_get_cursor(0)[1] -- 1-based
-	local line = vim.api.nvim_get_current_line()
+  local row = vim.api.nvim_win_get_cursor(0)[1] -- 1-based
+  local line = vim.api.nvim_get_current_line()
 
-	-- capture indentation (leading spaces only)
-	local indent = line:match("^(%s*)") or ""
+  -- capture indentation (leading spaces only)
+  local indent = line:match("^(%s*)") or ""
 
-	local new_lines = {
-		"",
-		"# fmt: off",
-		"import ipdb; ipdb.set_trace()",
-		"# fmt: on",
-		"",
-	}
+  local new_lines = {
+    "",
+    "# fmt: off",
+    "import ipdb; ipdb.set_trace()",
+    "# fmt: on",
+    "",
+  }
 
-	-- apply same indent to every non-empty line (optional; remove the if to indent blanks too)
-	for i, v in ipairs(new_lines) do
-		if v ~= "" then
-			new_lines[i] = indent .. v
-		end
-	end
+  -- apply same indent to every non-empty line (optional; remove the if to indent blanks too)
+  for i, v in ipairs(new_lines) do
+    if v ~= "" then
+      new_lines[i] = indent .. v
+    end
+  end
 
-	-- nvim_buf_set_lines uses 0-based indices; insert *below* current line:
-	local insert_at = row
-	vim.api.nvim_buf_set_lines(0, insert_at, insert_at, true, new_lines)
+  -- nvim_buf_set_lines uses 0-based indices; insert *below* current line:
+  local insert_at = row
+  vim.api.nvim_buf_set_lines(0, insert_at, insert_at, true, new_lines)
 end
 
 vim.keymap.set("n", "<leader>lp", ipdb_set_trace, { desc = "Insert ipdb set_trace" })
 
 function append_type_ignore()
-	local current_row = vim.api.nvim_win_get_cursor(0)[1]
-	local current_line = vim.api.nvim_get_current_line()
-	vim.api.nvim_buf_set_lines(0, current_row - 1, current_row, true, { current_line .. "  # type: ignore" })
+  local current_row = vim.api.nvim_win_get_cursor(0)[1]
+  local current_line = vim.api.nvim_get_current_line()
+  vim.api.nvim_buf_set_lines(0, current_row - 1, current_row, true, { current_line .. "  # type: ignore" })
 end
 
 vim.keymap.set("n", "<leader>ii", append_type_ignore, { desc = "Insert `  # type: ignore` at the end of the line" })
 
 vim.keymap.set("n", "gs", function()
-	vim.cmd("vsplit")
+  vim.cmd("vsplit")
 
-	local clients = vim.lsp.get_clients({ bufnr = 0 })
-	if clients and #clients > 0 then
-		vim.lsp.buf.definition()
-	else
-		vim.api.nvim_echo({ { "Failed to find LSP" } }, false, { err = true })
-	end
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if clients and #clients > 0 then
+    vim.lsp.buf.definition()
+  else
+    vim.api.nvim_echo({ { "Failed to find LSP" } }, false, { err = true })
+  end
 end, { desc = "Vertical split and go to definition" })
 
 local function go_to_definition()
-	local clients = vim.lsp.get_clients({ bufnr = 0 })
-	if clients and #clients > 0 then
-		vim.lsp.buf.definition()
-	else
-		vim.notify("Failed to find LSP", vim.log.levels.ERROR)
-	end
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if clients and #clients > 0 then
+    vim.lsp.buf.definition()
+  else
+    vim.notify("Failed to find LSP", vim.log.levels.ERROR)
+  end
 end
 
 vim.keymap.set("n", "gS", function()
-	if #vim.api.nvim_tabpage_list_wins(0) > 1 then
-		vim.cmd("on")
-	end
+  if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+    vim.cmd("on")
+  end
 
-	vim.cmd("vsplit")
-	go_to_definition()
+  vim.cmd("vsplit")
+  go_to_definition()
 end, { desc = "only - vertical split and go to definition" })
 
 vim.keymap.set("n", "gz", function()
-	local buf = vim.api.nvim_get_current_buf()
-	vim.cmd("tabnew")
-	vim.api.nvim_set_current_buf(buf)
+  local buf = vim.api.nvim_get_current_buf()
+  vim.cmd("tabnew")
+  vim.api.nvim_set_current_buf(buf)
 end, { desc = "Open current buffer in new tab" })
 
 require("config.lazy")

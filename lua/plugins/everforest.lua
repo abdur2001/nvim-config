@@ -14,6 +14,10 @@ return {
       hl.CurrentWord = { bg = "#4d2e3e", bold = true }
       hl.NormalCursor = { bg = palette.grey2, fg = palette.bg0 }
     end,
+    dim_inactive_windows = true,
+    spell_foreground = true,
+    show_eob = true,
+    inlay_hints_background = "dimmed",
   },
   main = "everforest",
 }
