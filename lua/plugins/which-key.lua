@@ -11,7 +11,9 @@ return {
       { "<leader>g", name = "[G]it" },
       { "<leader>h", name = "[H]arpoon" },
       { "<leader>l", name = "[L]SP" },
+      { "<leader>o", name = "[O]penCode" },
       { "<leader>p", name = "[P]ersitance" },
+      { "<leader>u", name = "[U]I" },
     })
   end,
 }
