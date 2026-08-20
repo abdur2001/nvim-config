@@ -40,6 +40,9 @@ return {
         },
       }
       opts.pickers = {
+        find_files = {
+          hidden = true,
+        },
         colorscheme = {
           enable_preview = true,
           ignore_builtins = false,
@@ -80,7 +83,7 @@ return {
       },
       {
         "<leader>f",
-        "<cmd>Telescope find_files hidden=true<cr>",
+        "<cmd>Telescope find_files<cr>",
         desc = "Search [F]iles",
       },
       {
