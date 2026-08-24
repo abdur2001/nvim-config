@@ -14,5 +14,12 @@ return {
     "GBrowse",
   },
   event = "BufReadPost",
-  opts = {},
+  config = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "fugitive",
+      callback = function()
+        vim.cmd("resize 10")
+      end,
+    })
+  end,
 }
