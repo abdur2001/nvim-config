@@ -24,6 +24,9 @@ return {
           path = 1,
         },
       },
+      lualine_c = {},
+      lualine_x = { "fileformat", "filetype" },
+      lualine_y = {},
       lualine_z = {
         {
           function()
