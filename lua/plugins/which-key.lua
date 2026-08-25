@@ -2,9 +2,12 @@ return {
   "folke/which-key.nvim",
   version = "*",
   event = "VeryLazy",
-  config = function()
-    require("which-key").setup()
+  opts = { preset = "helix" },
+  config = function(_, opts)
+    require("which-key").setup(opts)
     require("which-key").add({
+      { "zj", desc = "Move to next fold" },
+      { "zk", desc = "Move to previous fold" },
       { "<leader>c", name = "[C]ode" },
       { "<leader>d", name = "[D]ocument" },
       { "<leader>s", name = "[S]earch" },

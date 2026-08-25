@@ -16,13 +16,17 @@ return {
   ---@module "conform"
   ---@type conform.setupOpts
   opts = {
-
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "ruff_format", "ruff_organize_imports" },
       markdown = { "injected" },
       toml = { "taplo" },
       ["*"] = { "trim_whitespace" },
+    },
+    formatters = {
+      stylua = {
+        prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
+      },
     },
     default_format_opts = {
       lsp_format = "fallback",

@@ -20,7 +20,7 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "fugitive",
       callback = function()
-        vim.cmd("resize 10")
+        vim.api.nvim_win_set_height(0, math.max(1, math.floor(vim.o.lines * 0.20)))
       end,
     })
 
