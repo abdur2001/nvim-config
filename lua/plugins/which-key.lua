@@ -2,7 +2,6 @@ return {
   "folke/which-key.nvim",
   version = "*",
   event = "VeryLazy",
-  opts = { preset = "helix" },
   config = function(_, opts)
     require("which-key").setup(opts)
     require("which-key").add({
