@@ -11,22 +11,26 @@ return {
         pattern = "^ssh://git@gitlab.sqpc.sqrpnt.com:%d+/(.+).git$",
         replace = "https://gitlab.sqpc.sqrpnt.com/%1/-/blob",
         format_url = function(base_url, params)
+          local ref_type = params.permalink and "" or "?ref_type=heads"
+
           -- For single line
           if params.start_line == params.end_line then
             return string.format(
-              "%s/%s/%s?ref_type=heads#L%d",
+              "%s/%s/%s%s#L%d",
               base_url,
               params.branch,
               params.file_path,
+              ref_type,
               params.start_line
             )
           else
             -- For line ranges
             return string.format(
-              "%s/%s/%s?ref_type=heads#L%d-%d",
+              "%s/%s/%s%s#L%d-%d",
               base_url,
               params.branch,
               params.file_path,
+              ref_type,
               params.start_line,
               params.end_line
             )
@@ -41,7 +45,15 @@ return {
       function()
         require("git-link.main").copy_line_url()
       end,
-      desc = "Copy code link to clipboard",
+      desc = "Copy branch code link to clipboard",
+      mode = { "n", "x" },
+    },
+    {
+      "<leader>gW",
+      function()
+        require("git-link.main").copy_permalink()
+      end,
+      desc = "Copy commit code link to clipboard",
       mode = { "n", "x" },
     },
   },
