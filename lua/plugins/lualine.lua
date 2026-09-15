@@ -21,6 +21,7 @@ return {
       lualine_a = {
         {
           "filename",
+          path = 1,
         },
       },
       lualine_c = {},
