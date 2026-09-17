@@ -4,7 +4,16 @@ return {
   config = function()
     ---@type opencode.Opts
     vim.g.opencode_opts = {
-      -- Your configuration, if any; goto definition on the type for details
+      server = {
+        start = function()
+          require("snacks.terminal").open({ vim.fn.expand("~/.codemate/run_opencode.sh"), "--port" }, {
+            win = {
+              position = "right",
+              enter = false,
+            },
+          })
+        end,
+      },
     }
 
     vim.keymap.set({ "n", "x" }, "<leader>oa", function()
