@@ -14,7 +14,7 @@ end
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons", enabled = not vim.env.TMUX },
   opts = {
     theme = "everforest",
     sections = {
