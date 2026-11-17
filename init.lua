@@ -117,6 +117,35 @@ end
 
 vim.keymap.set("n", "<leader>ii", append_type_ignore, { desc = "Insert `  # type: ignore` at the end of the line" })
 
+function append_pragma_no_cover()
+  local current_row = vim.api.nvim_win_get_cursor(0)[1]
+  local current_line = vim.api.nvim_get_current_line()
+  vim.api.nvim_buf_set_lines(0, current_row - 1, current_row, true, { current_line .. "  # pragma: no cover" })
+end
+vim.keymap.set(
+  "n",
+  "<leader>ic",
+  append_pragma_no_cover,
+  { desc = "Insert `  # pragma: no cover` at the end of the line" }
+)
+
+vim.keymap.set("n", "<leader>m", function()
+  vim.cmd('caddexpr expand("%") . ":" . line(".") . ": " . getline(".")')
+end, { desc = "Add the current line to the quickfix list" })
+
+vim.keymap.set("n", "<leader>ct", function()
+  vim.cmd('cgetexpr system("make type-check 2>&1 | grep -F .py")')
+end, { desc = "populate quickfix list with `make type-check` output" })
+
+vim.keymap.set("n", "<leader>cf", function()
+  local script = vim.fn.stdpath("config") .. "/scripts/format_quickfix.py"
+  local output = vim.fn.system("make format 2>&1 | python " .. vim.fn.shellescape(script))
+  vim.fn.setqflist({}, " ", {
+    lines = vim.split(output, "\n", { trimempty = true }),
+    efm = "%f:%l:%c:%m",
+  })
+end, { desc = "populate quickfix list with `make format` output" })
+
 vim.keymap.set("n", "gs", function()
   vim.cmd("vsplit")
 
